@@ -1,0 +1,302 @@
+*{
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+*:focus{
+	outline: none;
+}
+
+header{
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 100;
+    background-color: aliceblue;
+}
+
+header nav{
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+header nav ul{
+    margin-left: 0px;
+    padding-left: 0px;
+    justify-content: space-around;
+    list-style: none;
+    width: 100%;
+    margin: auto;
+    display: flex;
+}
+nav ul li { 
+    float: left;
+}
+nav ul li a {
+    display: block;
+    min-width: 100px;
+    max-width: 150px;
+    border-radius: 20px;
+    padding: 15px;
+    margin: 0 5px;
+    background-color: antiquewhite;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    font-weight: 700;
+}
+
+nav ul li button {
+    border: none;
+    background-color: antiquewhite;
+    padding: 15px;
+    border-radius: 20px;
+    color: black;
+    font-weight: 700;
+}
+
+nav ul a:hover{
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+header .nav.active{
+    background-color: burlywood;
+    box-shadow: 0 0 10px peru;
+}
+
+header div#auth {
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+div#register {
+    display: none;
+    transition: 0.3s;
+}
+
+.modal_background{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(0,0,0,0.6);
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal_form{
+    display: none;
+    background: #ffffff;
+    border-radius: 20px;
+    width: 300px;
+    padding: 5px;
+    position: relative;
+    max-width: 100%;
+    min-height: 300px;
+    position: relative;
+
+}
+
+button.close_form{
+	border-radius: 100%;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: -2px;
+	right: -2px;
+	background-color: white;
+	border: 1px solid black;
+	z-index: 100;
+}
+
+main{
+    display: flex;
+    margin-top: 80px;
+}
+
+.catalog {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    flex-direction: column;
+}
+
+.catalog .card{
+    max-width: 200px;
+    min-width: 150px;
+    background-color: antiquewhite;
+    min-height: 250px;
+    border-radius: 20px;
+    padding: 10px;
+    flex-direction: column;
+    display: inline-flex;
+}
+
+.catalog .card img{
+    max-width: 150px;
+    max-height: 200px;
+    min-width: 120px;
+    margin: auto;
+    border: 2px solid #c77213;
+    border-radius: 20px;
+}
+
+.wrap{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin: 10px;
+
+}
+
+button.gender{
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    border: none;
+}
+
+.gender.f {
+    background-color: #dd87de;
+}
+
+.gender.m {
+    background-color: #87b2de;
+}
+
+.card .description{
+    margin: auto;
+}
+
+.card .description p{
+    text-align: center;
+}
+
+.card:hover {
+    transform: scale(0.9);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.card button.updateBut,
+.userPanel button.buy,
+.card button.delete,
+.adminPanel button.addBut,
+#auth_form .button,
+#reg_form .button,
+#add_form .button{
+    border: 1px solid black;
+    background: none;
+    padding: 5px;
+    border-radius: 20px;
+    color: black;
+    font-weight: 700;
+    margin: auto;
+}
+
+#reg button,
+#add_form input[type="submit"],
+#update_form input[type="submit"],
+#reg_form input[type="submit"]{
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 20px;
+    font-weight: 700;
+    margin: auto;
+    background-color: black;
+    color: antiquewhite;
+}
+
+#reg button:hover,
+#add_form input[type="submit"]:hover,
+#update_form input[type="submit"]:hover,
+#reg_form input[type="submit"]:hover{
+    background: none;
+    color: black;
+}
+
+.card button.updateBut:hover,
+.userPanel button.buy:hover,
+.card button.delete:hover,
+.adminPanel button.addBut:hover,
+#auth_form .button:hover,
+#reg_form .button:hover{
+    background-color: black;
+    color: antiquewhite;
+}
+
+.adminPanel button.addBut{
+    margin: auto 3px;
+}
+
+#auth_form input,
+#update_form input,
+#update_form select,
+#add_form select,
+#add_form input,
+#reg_form input{
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 20px;
+    font-weight: 700;
+    margin: 3px auto;
+    background-color: antiquewhite;
+    color: black;
+}
+
+#update_form p,
+#reg_form p,
+#auth_form p,
+#add_form p{
+    margin: auto;
+    width: max-content;
+}
+
+.adminPanel{
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    margin-bottom: 3px;
+}
+
+.userPanel{
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    margin-bottom: 3px;
+}
+
+@media (max-width: 400px) {
+    .wrap{
+        flex-direction: column;
+        width: auto;
+        margin: auto;
+    }
+    .catalog .card{
+        flex-direction: column;
+        margin-bottom: 10px; 
+        max-width: 300px;
+        height: auto;
+    }
+
+    .catalog .card img{
+        max-width: 250px;
+    }
+}
