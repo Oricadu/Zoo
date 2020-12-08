@@ -71,6 +71,40 @@ $(function(){///////////////////////
         var elem = $(".catalog");
 
         catalog = elem.data('catalog');
+
+           var data_for = new FormData();
+
+//Form data
+var form_data = $('#add_form').serializeArray();
+$.each(form_data, function (key, input) {
+    data_for.append(input.name, input.value);
+});
+
+//File data
+var file_data = $('input[name="photo"]')[0].files;
+for (var i = 0; i < file_data.length; i++) {
+    data_for.append("my_images[]", file_data[i]);
+    console.log(file_data[i]);
+}
+
+/*$.ajax({
+    url: 'catalog.php?SECTION=' + catalog,
+    method: "post",
+    processData: false,
+    contentType: false,
+    data: {add_data: data},
+    success: function (data) {
+        if(data){
+          $that.replaceWith(data); // заменим форму данными, полученными в ответе.
+          //location.reload();
+        }
+    },
+    error: function (e) {
+        //error
+    }
+});
+
+*/
     $.ajax({
       url: 'catalog.php?SECTION=' + catalog, // путь к обработчику берем из атрибута action
       type: 'POST', // метод передачи - берем из атрибута method

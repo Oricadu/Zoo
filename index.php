@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
+	<script src="http://malsup.github.com/jquery.form.js"></script> 
 	<meta name="viewport" content="width=device-width">
 
 </head>

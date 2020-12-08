@@ -69,25 +69,50 @@
 
 
 		} else if (isset($_GET['SECTION'])) {	
-		$section = $_GET['SECTION'];
+			$section = $_GET['SECTION'];
 
 
-		if(isset($_POST['add_data'])){
-			$req = false; // изначально переменная для "ответа" - false
-		  	parse_str($_POST['add_data'], $add_data); // разбираем строку запроса
-		  	// Приведём полученную информацию в удобочитаемый вид
-		  	ob_start(); 
+			if(isset($_POST['add_data'])){
+				$req = false; // изначально переменная для "ответа" - false
+			  	parse_str($_POST['add_data'], $add_data); // разбираем строку запроса
+			  	// Приведём полученную информацию в удобочитаемый вид
+			  	ob_start(); 
 
-		  	/*if (empty($_FILES['photo'])) {
-		  		echo "no photo";
-		  	}*/
-		  	/*if(isset($_FILES) && $_FILES['photo']['error'] == 0){ // Проверяем, загрузил ли пользователь файл
-				$destiation_dir = dirname(__FILE__) .'/'.$_FILES['photo']['name']; // Директория для размещения файла
-				move_uploaded_file($_FILES['photo']['tmp_name'], $destiation_dir ); // Перемещаем файл в желаемую директорию
-				echo 'File Uploaded'; // Оповещаем пользователя об успешной загрузке файла
-			}else{
-				echo 'No File Uploaded'; // Оповещаем пользователя о том, что файл не был загружен
-			}*/
+
+
+
+
+			  	// if (empty($_FILES['photo'])) {
+			  	// 	echo "no photo";
+			  	// }
+			  	/*if(isset($_FILES) && $_FILES['userfile']['error'] == 0){ // Проверяем, загрузил ли пользователь файл
+					$destiation_dir = "./images".'/'.$_FILES['userfile']['name']; // Директория для размещения файла
+					move_uploaded_file($_FILES['userfile']['tmp_name'], $destiation_dir ); // Перемещаем файл в желаемую директорию
+					echo 'File Uploaded'; // Оповещаем пользователя об успешной загрузке файла
+				}else{
+					echo 'No File Uploaded'; // Оповещаем пользователя о том, что файл не был загружен
+				}*/
+
+
+				/*$uploaddir = './images/';
+				$uploadfile = $uploaddir . basename($_FILES['photo']['name']);
+
+				echo '<pre>';
+				if (move_uploaded_file($_FILES['photo']['tmp_name'], $uploadfile)) {
+				    echo "Файл корректен и был успешно загружен.\n";
+				} else {
+				    echo "Возможная атака с помощью файловой загрузки!\n";
+				}
+
+				echo 'Некоторая отладочная информация:';
+				print_r($_FILES);
+
+				print "</pre>";
+				print "<pre>";
+				print_r($_POST);
+				print "</pre>";*/
+
+	/*--------------------------------------------------------------------------------*/
 
 
 
@@ -326,7 +351,7 @@
 		}else{
 			switch ($section) {
 			case 'pets':
-				$query = "select `ID`, `breed`, `age`, pets.`name`, `gender`, `price`, `photo`, `breeds`.pet from `pets` left join `breeds` on `breed`=breeds.name";
+				$query = "select `ID`, `breed`, `age`, pets.`name`, `gender`, `price`, `photo`, `image_name`, `breeds`.pet from `pets` left join `breeds` on `breed`=breeds.name";
 				$result = mysqli_query($is_connected, $query);
 				
 				//$row = mysqli_fetch_array($result, MYSQLI_ASSOC);			  	
@@ -352,6 +377,8 @@
 						//echo "<script>console.log('$count')</script>";
 						if ($row['photo']) {
 							echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['photo']).'"/>';
+						} else{
+							echo "<img src='./images/".$row['image_name']."'/>";
 						}
 
 						echo "<div class='description'>";
@@ -419,7 +446,12 @@
 						
 						addAdminPanel($is_connected, $result, $row['ID']);
 
-						echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['photo'] ).'"/>';
+						if ($row['photo']) {
+							echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['photo'] ).'"/>';
+						} else{
+							echo "<img src='./images/".$row['image_name']."'/>";
+						}
+
 						echo "<div class='description'>";
 						echo "<p>Тип: ".$row['type']."</p>";
 
@@ -480,7 +512,12 @@
 						
 						addAdminPanel($is_connected, $result, $row['ID']);
 
-						echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['photo'] ).'"/>';
+						if ($row['photo']) {
+							echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['photo'] ).'"/>';
+						} else{
+							echo "<img src='./images/".$row['image_name']."'/>";
+						}
+
 						echo "<div class='description'>";
 
 						echo "<p> ".$row['name']."</p>";
